@@ -16,6 +16,13 @@ const Entry = ({ data }) => {
         );
     }
     const imageUrl = `http://localhost:8000/images/${entry.file}`;
+    // Prepare all data as JSON
+    const qrData = JSON.stringify({
+        username: entry.username,
+        age: entry.age,
+        file: imageUrl,
+        id: entry._id
+    });
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -34,7 +41,8 @@ const Entry = ({ data }) => {
                 </div>
                 <div className="mt-8 flex flex-col items-center">
                     <h3 className="text-lg font-semibold mb-2 text-gray-700">Scan to view image</h3>
-                    <QRCodeSVG value={imageUrl} size={128} />
+                    {/* <QRCodeSVG value={imageUrl} size={128} /> */}
+                    <QRCodeSVG value={qrData} size={128} />
                 </div>
             </div>
         </div>
